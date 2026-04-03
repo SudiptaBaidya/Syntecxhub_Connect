@@ -5,7 +5,7 @@ import { FaGoogle } from 'react-icons/fa';
 import { auth, provider, signInWithPopup } from '../firebase';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/auth`;
 
 const SignUp = () => {
   const [fullName, setFullName] = useState('');

@@ -11,8 +11,8 @@ import { format } from 'date-fns';
 import EmojiPicker from 'emoji-picker-react';
 import './ChatApp.css';
 
-const API_URL = 'http://localhost:5000/api';
-const SERVER_URL = 'http://localhost:5000';
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api`;
+const SERVER_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 let socket;
 
 const getAvatarUrl = (user) => {
@@ -136,7 +136,7 @@ const ChatApp = () => {
     };
 
     fetchInitialData();
-    socket = io('http://localhost:5000');
+    socket = io(SERVER_URL);
     socket.emit('userOnline', userInfo._id);
 
     socket.on('userStatusUpdate', ({ userId, status }) => {
