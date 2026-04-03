@@ -1,0 +1,13 @@
+{
+  "name": "syntecxhub_connect",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "build-frontend": "cd frontend && npm run build",
+    "install-all": "npm run install-backend && npm run install-frontend",
+    "build": "npm run install-all && npm run build-frontend",
+    "start": "cd backend && npm start"
+  }
+}
