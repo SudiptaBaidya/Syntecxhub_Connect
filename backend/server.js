@@ -34,16 +34,19 @@ app.use(cors());
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Basic Route for testing
-app.get('/', (req, res) => {
-  res.send('Connect API is running...');
-});
+// Serve static files from the frontend/dist directory
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // Define Routes
 app.set('socketio', io);
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/chat', require('./routes/chat'));
 app.use('/api/users', require('./routes/user'));
+
+// Catch-all route to serve the frontend index.html for any non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 // Store socket connections by User ID
 const userSockets = new Map();
