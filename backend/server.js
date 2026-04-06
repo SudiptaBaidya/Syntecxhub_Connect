@@ -44,7 +44,7 @@ app.use('/api/chat', require('./routes/chat'));
 app.use('/api/users', require('./routes/user'));
 
 // Catch-all route to serve the frontend index.html for any non-API routes
-app.get('*', (req, res) => {
+app.get('(.*)', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
